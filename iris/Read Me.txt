@@ -1,0 +1,15 @@
+(This is my first project using sklearn)
+
+I found a simple Iris dataset on github, which contains a classified data of the 3 iris types along with their petal length, petal width, sepal length and sepal width.
+I downloaded this data and decided to create a classifier model for classifying any unseen model
+
+I used:
+	StandardScaler to scale down the data so every parameter will be treated with equal weight
+	LabelEncoder to encode the names of the iris with 0,1 and 2
+
+I used:
+	KNearestNeighbour to classify the input by considering the classification of the other close neighbours
+	pipeline to create a continous flow of steps
+	GridSearchCV to fit and get the best model of the possible hyperparameters
+
+Then I used joblib to save my model and created an interactive program that predicts the type of Iris when the 4 measurements are provided
