@@ -57,12 +57,9 @@ if st.button("Predict Price"):
     loc_encoded = ohe.transform([[selected_location]])
     if hasattr(loc_encoded, 'toarray'):
         loc_encoded = loc_encoded.toarray()
-    
-    # 3. Combine Features (Must match your training column order!)
-    # Most common order: [Numerical Features, Categorical Features]
+
     final_features = np.hstack([num_data, loc_encoded])
     
-    # 4. Predict & Back-transform from log1p
     log_prediction = model.predict(final_features)
     final_price = np.expm1(log_prediction)[0]
     
