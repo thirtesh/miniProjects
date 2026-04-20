@@ -6,8 +6,8 @@ import numpy as np
 
 
 
-model = jb.load(os.path.expanduser('~/Desktop/Project/real_estate/Model/model.joblib'))
-ohe = jb.load(os.path.expanduser('~/Desktop/Project/real_estate/Model/OHE.joblib'))
+model = jb.load(os.path.expanduser('~/Desktop/Project/bangalore_house_price/Model/model.joblib'))
+ohe = jb.load(os.path.expanduser('~/Desktop/Project/bangalore_house_price/Model/OHE.joblib'))
 
 locations_list = ['1st Block Jayanagar', '1st Block Koramangala', '1st Phase JP Nagar', '2nd Phase Judicial Layout', '2nd Stage Nagarbhavi',
                    '5th Phase JP Nagar', '6th Phase JP Nagar', '7th Phase JP Nagar', '8th Phase JP Nagar', '9th Phase JP Nagar', 'AECS Layout',
