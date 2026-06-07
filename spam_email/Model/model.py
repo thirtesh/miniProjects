@@ -5,6 +5,7 @@ import streamlit as st
 file=os.path.expanduser("~/Desktop/Project/spam_email/Model/model.joblib")
 model=jb.load(file)
 
+st.title('SPAM DETECTOR')
 email=st.text_area('Enter Email Text')
 
 if st.button('CHECK'):
