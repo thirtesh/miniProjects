@@ -1,6 +1,8 @@
 import joblib as jb
 import os
 import streamlit as st
+import warnings
+warnings.filterignore('ignore')
 
 file=os.path.expanduser("~/Desktop/Project/spam_email/Model/model.joblib")
 model=jb.load(file)
