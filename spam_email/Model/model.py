@@ -2,7 +2,7 @@ import joblib as jb
 import os
 import streamlit as st
 import warnings
-warnings.filterignore('ignore')
+#warnings.filterignore('ignore')
 
 file=os.path.expanduser("~/Desktop/Project/spam_email/Model/model.joblib")
 model=jb.load(file)
@@ -12,7 +12,8 @@ email=st.text_area('Enter Email Text')
 
 if st.button('CHECK'):
     a=model.predict([email])
+    prob=model.predict_proba([email])
     if a[0]==0:
-        st.success("It's a ham email")
+        st.success(f"It's a ham email({round(prob[0][0]*100, 1)}% not spam)")
     else:
-        st.success("It's a spam email")
+        st.success(f"It's a spam email({round(prob[0][1]*100, 1)}% spam)")
