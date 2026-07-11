@@ -16,6 +16,7 @@ def drop_unwanted(df):
 def clean_data(df):
     df['bhk']=df['size'].apply(lambda x: int(x.split(' ')[0]))
     df.drop('size', axis=1, inplace=True)
+    
     df['total_sqft']=df['total_sqft'].where(df['total_sqft'].str.isdigit())
     df=df.dropna()
     return df
@@ -41,7 +42,7 @@ def remove_all_outliers(df):
     for _, subdf in df.groupby('location'):
         m = subdf.price_per_sqft.mean()
         st = subdf.price_per_sqft.std()
-        reduced_df = subdf[(subdf.price_per_sqft > (m - st)) & (subdf.price_per_sqft <= (m + st))]
+        reduced_df = subdf[(subdf.price_per_sqft > (m - 2*st)) & (subdf.price_per_sqft <= (m + 2*st))]
         df_out = pd.concat([df_out, reduced_df], ignore_index=True)
     data=pd.DataFrame(df_out)
     data=data.drop(['area_type','balcony','price_per_sqft'], axis=1)
@@ -53,7 +54,7 @@ def ohe(df):
     ohe = sk.preprocessing.OneHotEncoder(handle_unknown='ignore', sparse_output=False)
     data_ohe=ohe.fit_transform(df[['location']])
     data_ohe = pd.DataFrame(data_ohe, columns=ohe.get_feature_names_out(['location']))
-    if 'location_other' in data_ohe.columns:
+    if 'location_others' in data_ohe.columns:
         data_ohe = data_ohe.drop('location_others', axis=1)
     df=pd.concat([df.drop('location', axis=1), data_ohe], axis=1)
 
