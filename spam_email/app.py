@@ -1,10 +1,10 @@
 import joblib as jb
-import os
 import streamlit as st
-import warnings
-#warnings.filterignore('ignore')
+from pathlib import Path
 
-file=os.path.expanduser("~/Desktop/Project/spam_email/Model/model.joblib")
+BASE_DIR=Path(__file__).resolve().parent
+
+file=BASE_DIR/'model'/'model.joblib'
 model=jb.load(file)
 
 st.title('SPAM DETECTOR')
